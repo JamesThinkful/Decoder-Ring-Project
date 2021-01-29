@@ -1,14 +1,14 @@
 function polybiusRenderer() {
   const form = document.querySelector("#polybius");
-  form.addEventListener("submit", event => {
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
 
     const input = event.target["polybius-input"].value;
     const direction = event.target["polybius-options"].value;
     const result =
-      direction === "encode"
-        ? polybiusModule.polybius(input)
-        : polybiusModule.polybius(input, false);
+      direction === "encode" 
+    ? polybius(input)
+    : polybius(input, false);
 
     const alert = document.querySelector("#polybius-alert");
     if (result) {
