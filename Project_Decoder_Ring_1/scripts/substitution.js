@@ -1,6 +1,6 @@
 function substitutionRenderer() {
   const form = document.querySelector("#substitution");
-  form.addEventListener("submit", event => {
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
 
     const input = event.target["substitution-input"].value;
@@ -8,8 +8,8 @@ function substitutionRenderer() {
     const alphabet = event.target["substitution-alphabet"].value;
     const result =
       direction === "encode"
-        ? substitutionModule.substitution(input, alphabet)
-        : substitutionModule.substitution(input, alphabet, false);
+        ? substitution(input, alphabet)
+        : substitution(input, alphabet, false);
 
     const alert = document.querySelector("#substitution-alert");
     if (result) {
