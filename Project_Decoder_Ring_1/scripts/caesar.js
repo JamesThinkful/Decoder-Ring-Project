@@ -8,8 +8,8 @@ function caesarRenderer() {
     const shift = event.target["caesar-shift"].value;
     const result =
       direction === "encode"
-        ? caesarModule.caesar(input, Number(shift))
-        : caesarModule.caesar(input, Number(shift), false);
+        ? caesar(input, Number(shift))
+        : caesar(input, Number(shift), false);
 
     const alert = document.querySelector("#caesar-alert");
     if (result) {
