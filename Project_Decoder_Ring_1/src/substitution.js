@@ -1,44 +1,47 @@
-let findDuplicates = (arr) =>
-  arr.filter((item, index) => arr.indexOf(item) != index);
-
-function substitution(input, alphabet, encode = true) {
-  alphabet = alphabet.split("");
-
-  if (findDuplicates(alphabet) != 0 || alphabet.length != 26) return false;
-
-  const breakout = "abcdefghijklmnopqrstuvwxyz".split("");
-  input = input.split("");
-  let result = "";
-
-  const encodeCipher = (input, alphabet, breakout) => {
-    let charSwitch = input.forEach((letter) => {
-      if (letter === " ") {
-        result += letter;
-        return result;
-      }
-      let currentIndex = alphabet.indexOf(letter);
-      let newIndex = breakout[currentIndex];
-      result += newIndex;
-    });
-    return result;
-  };
-
-  const decodeCipher = (input, alphabet, breakout) => {
-    let charSwitch = input.forEach((letter) => {
-      if (letter === " ") {
-        result += letter;
-        return result;
-      }
-      let currentIndex = breakout.indexOf(letter);
-      let newIndex = alphabet[currentIndex];
-      result += newIndex;
-    });
-    return result;
-  };
-
-  return encode
-    ? encodeCipher(input, alphabet, breakout)
-    : decodeCipher(input, alphabet, breakout);
+function substitution(input, alphabet, encode = true){
+if (!alphabet || !input) return false 
+let inputArr = input.toLowerCase().split('');
+let cipherAlpha = alphabet.split(''); 
+let regularAlfa = "abcdefghijklmnopqrstuvwxyz"
+if (alphabet.length !== 26) return false; 
+const uniqueArray = [];
+for (let ltr in alphabet) {
+    if (uniqueArray.indexOf(alphabet[ltr]) < 0) {
+        uniqueArray.push(alphabet[ltr]);
+    } else {
+        return false;
+    }
+}
+regularAlfa = regularAlfa.split('')
+if(encode){ 
+    for(let ltr in inputArr){
+    if (inputArr[ltr] !== " "){
+        let found 
+        for(let x in regularAlfa){ 
+            
+            if (inputArr[ltr] === regularAlfa[x] && !found){
+                inputArr[ltr] = cipherAlpha[x]
+                found = true
+            }
+        }
+    }
+    }
+}
+if(!encode){ 
+    for(let ltr in inputArr){
+    if (inputArr[ltr] !== " "){ 
+        let found 
+        for(let x in cipherAlpha){ 
+      
+            if (inputArr[ltr] === cipherAlpha[x] && !found){
+                inputArr[ltr] = regularAlfa[x]
+                found = true
+            }
+        }
+    }
+    }
+}
+return inputArr.join('');
 }
 
 module.exports = substitution;
