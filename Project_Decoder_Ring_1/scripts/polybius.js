@@ -6,9 +6,7 @@ function polybiusRenderer() {
     const input = event.target["polybius-input"].value;
     const direction = event.target["polybius-options"].value;
     const result =
-      direction === "encode" 
-    ? polybius(input)
-    : polybius(input, false);
+      direction === "encode" ? polybius(input) : polybius(input, false);
 
     const alert = document.querySelector("#polybius-alert");
     if (result) {
