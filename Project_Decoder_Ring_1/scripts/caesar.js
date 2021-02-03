@@ -1,6 +1,6 @@
 function caesarRenderer() {
   const form = document.querySelector("#caesar");
-  form.addEventListener("submit", event => {
+  form.addEventListener("submit", (event) => {
     event.preventDefault();
 
     const input = event.target["caesar-input"].value;
